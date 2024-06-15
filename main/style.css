@@ -1,0 +1,63 @@
+body{
+    margin:0px;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+}
+
+.main{   
+   width: 530px;/*largura*/
+   height: 530px;/*autura*/
+   background-color: aqua;/*cor de fundo*/
+   display: block;/**/
+   flex-direction: row;
+   justify-content: center;/*itens centralizado do meio na horizontal*/
+   /*align-items: center;itens de dentro centralizado na vertical*/
+   margin-inline: 10px;
+}
+header{
+    background-color: red;
+    width: 530px;
+    height: 40px;
+    margin-top: 3pt;
+    border: 1px #000 solid;
+    justify-content: center;
+    display: block;
+   
+}
+#logo1 img{
+    width: 39px;
+    height: 40px;
+}
+p{
+    margin: 5px 5px;
+}
+#descriçao{
+    width: 300px;
+    height: 50px;
+
+    
+}
+#teste1{
+    width: 400px;
+    height:450px;
+    background-color: aliceblue;    
+    position: relative;
+    float: left;
+}
+.tabela{
+    width: 400px;
+    border-collapse: collapse;
+}
+.tabela td,.tabela caption{
+ 
+    height: 20px;
+   
+}
+.tabela .titulos, .tabela caption{
+    background-color: rgba(199, 199, 199, 0.819);  
+    border: 1px #000 solid;
+}    
+.tabela caption{
+    border-bottom: none;
+}
