@@ -1,22 +1,7 @@
-import sqlite3 from "sqlite3";
-import { open } from "sqlite";
+document.addEventListener('DOMContentLoaded',() => {
+    const abrirJanela = document.getElementById('addPeca');
 
-async function criareAdd(codigo,descrição, quantidade, valor){
-    const db = await open({
-        filename: './banco.db',
-        driver: sqlite3.Database,
+    addPeça.addEventListener('click',() => {
+        window.open('./cadastro.html','blank','width=500,height=500,left=500,top=100,resizable=yes,scrollbars=yes');
     });
-    db.run(
-        'CREATE TABLE IF NOT EXISTS peça_de_moto(id INTERGER PRIMARY KEY, codigo TEXT, descrição TEXT,quantidade INT,valor FLOAT)'
-    );
-    //db.run('CREATE TRIGGER IF NOT EXISTS update_codigo AFTER INSERT ON peça_de_moto BEGIN UPDATE peça_de_moto SET codigo = "R" || printf("%05d", NEW.id) WHERE id = NEW.id;END')
-    db.run('INSERT INTO peça_de_moto (codigo,descrição, quantidade, valor) VALUES (?,?,?,?)',[
-
-        codigo,
-        descrição, 
-        quantidade, 
-        valor]);
-    
-}
-
-criareAdd("","cabo de alguma coisa", "3", "10.5");
+});

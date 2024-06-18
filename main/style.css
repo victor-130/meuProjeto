@@ -8,7 +8,7 @@ body{
 .main{   
    width: 530px;/*largura*/
    height: 530px;/*autura*/
-   background-color: aqua;/*cor de fundo*/
+   background-color: rgb(43, 49, 142);/*cor de fundo*/
    display: block;/**/
    flex-direction: row;
    justify-content: center;/*itens centralizado do meio na horizontal*/
@@ -16,7 +16,7 @@ body{
    margin-inline: 10px;
 }
 header{
-    background-color: red;
+    background-color: rgb(162, 47, 47);
     width: 530px;
     height: 40px;
     margin-top: 3pt;
@@ -29,14 +29,41 @@ header{
     width: 39px;
     height: 40px;
 }
-p{
-    margin: 5px 5px;
-}
-#descriçao{
-    width: 300px;
-    height: 50px;
 
-    
+#divBusca{
+    width: 400px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #b7cbe1;
+    border: solid 2px rgb(43, 49, 142);
+    border-radius: 10PX;
+    overflow: hidden;   
+}
+#divBusca img{
+    float: left;
+    width: 40px;
+    height: 100%;
+}
+#divBusca input{
+    float: left;
+    background-color: transparent;
+    padding-left: 5px;
+    font-size: 18px;
+    border: none;
+    height: 35px;
+    width: 300px;
+}
+#divBusca button{
+    border: none;
+    float: left;
+    height: 100%;
+    border-radius: 0 7px 7px 0;
+    width: 60px;
+    font-weight: bold;
+    background-color: #90b4da;
+
 }
 #teste1{
     width: 400px;
@@ -60,4 +87,17 @@ p{
 }    
 .tabela caption{
     border-bottom: none;
+}
+#barraLat{
+
+    text-align: center;
+    display: flex;
+    float: right;
+    width: 130px;
+    text-align: center;
+}
+#btnLat button{
+    width: 120px;
+    height: 40px;
+    background-color: transparent;
 }
