@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEU PROJETO js</title>
     <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-
+    
 </head>
 <body>
-    <script src="./app.js"></script>    
+    <script src="./app.js"></script>
+    <script src="./script.js"></script>    
     <div class="main">
         <header>
             <div id="logo1">
             <img src="./img/PicsArt_01-06-06.21.00.jpg" alt="logo"s>
             </div>
-            <p>_header_</p>
         </header>
 
-        <article id="teste1">
+        <section id="teste1">
             <div id="divBusca">              
                 <img src="./img/lupa.png" alt="Buscar...">
                 <input type="text" name="txtBusca" value="" placeholder="pesquisar..." style="font-style: italic;">
@@ -29,7 +29,7 @@
                         <caption>titulo</caption>                    
                     <tbody class="titulos">
                         <tr>
-                            <td></td>
+                            <td>cod</td>
                             <td style="width: 190px;">descrição</td>
                             <td>quantidade</td>
                             <td>valor</td>
@@ -37,21 +37,38 @@
                     </tbody>
                     <tbody>
                         <tr >
-                            <td>abc</td>
-                            <td style="width: 190px;">fgh</td>
-                            <td>4</td>
-                            <td>556</td>
+                            <td id="cod"></td>
+                            <td style="width: 190px;" id="des"></td>
+                            <td></td id="qnt">
+                            <td></td id="val">
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </article>
+        </section>
         <div id="barraLat">
             <div id="btnLat">
-                <button id="addPeça" type="button" value="adicioar peça" onclick="teste()">
-                <button href="" type="button">
-                <button href="" type="button">
+                <ul>
+                    <li>
+                        <a id="addPeça" value="adicioar peça">
+                            <img src="./icones/soma.svg" alt="adicionar item" class="icon">
+                        </a>
+                    </li>
+                    <li>
+                        
+                        <a href="" target="" id="edit">
+                            <img src="./icones/editar.svg" alt="editar" class="icon">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img  src="./icones/apagar.svg" alt="apagar" class="icon">
+                        </a>
+                    </li>
+
+                </ul>
             </div> 
+
         </div>
 
     </div>

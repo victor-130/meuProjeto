@@ -4,8 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cadastro</title>
+    <link rel="stylesheet" type="text/css" href="style-cadastro.css" media="screen" />
+    
 </head>
 <body>
-    
+    <form id="form">
+        <fieldset>
+            <label >codigo</label>
+            <input type="text" id="codigo" class="cadastro"><p></p>
+            <label>descrição</label>
+            <input type="text" id="descriçao" class="cadastro"><p></p>
+            <label>quantidade</label>
+            <input type="text" id="quantidade" class="cadastro"><p></p>
+            <label>preço</label>
+            <input type="text" id="preço" class="cadastro"><p></p>
+            <button type="submit" onclick="cadastrar()">cadastrar</button>
+        </fieldset>
+    </form>
 </body>
 </html>

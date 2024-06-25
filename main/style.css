@@ -3,27 +3,39 @@ body{
     display: flex;
     justify-content: center;
     background-color: black;
+    
 }
 
 .main{   
-   width: 530px;/*largura*/
-   height: 530px;/*autura*/
-   background-color: rgb(43, 49, 142);/*cor de fundo*/
-   display: block;/**/
-   flex-direction: row;
-   justify-content: center;/*itens centralizado do meio na horizontal*/
-   /*align-items: center;itens de dentro centralizado na vertical*/
-   margin-inline: 10px;
+    width: 500px;/*largura*/
+    height: 530px;/*autura*/
+    background-color: rgb(43, 55, 214);/*cor de fundo*/
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+#teste1{   
+
+    width: 400px;
+    height:450px;
+    background-color: rgb(236, 240, 244);
+
+    border-radius: 10px;
+    box-shadow: -6px 6px 5px 0px rgba(0,0,0,0.75);
+    margin: 2px 0px 10px 48px;
+    
+
 }
 header{
     background-color: rgb(162, 47, 47);
-    width: 530px;
+    width: 100%;
     height: 40px;
     margin-top: 3pt;
-    border: 1px #000 solid;
+    box-shadow: -2px 3px rgb(0, 0, 0.75);
     justify-content: center;
-    display: block;
-   
+    display: flex;   
 }
 #logo1 img{
     width: 39px;
@@ -31,15 +43,18 @@ header{
 }
 
 #divBusca{
-    width: 400px;
-    height: 40px;
+
+    width: 350px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #b7cbe1;
     border: solid 2px rgb(43, 49, 142);
     border-radius: 10PX;
-    overflow: hidden;   
+    overflow: hidden;  
+    margin: 2px 20px; 
+
 }
 #divBusca img{
     float: left;
@@ -63,15 +78,10 @@ header{
     width: 60px;
     font-weight: bold;
     background-color: #90b4da;
+    cursor: pointer;
 
 }
-#teste1{
-    width: 400px;
-    height:450px;
-    background-color: aliceblue;    
-    position: relative;
-    float: left;
-}
+
 .tabela{
     width: 400px;
     border-collapse: collapse;
@@ -82,22 +92,47 @@ header{
    
 }
 .tabela .titulos, .tabela caption{
-    background-color: rgba(199, 199, 199, 0.819);  
-    border: 1px #000 solid;
+    background-color: rgba(66, 124, 218, 0.819);  
+    border-bottom: 1px #000 solid;
 }    
-.tabela caption{
+/*.tabela caption{
     border-bottom: none;
-}
+}*/
 #barraLat{
 
-    text-align: center;
     display: flex;
     float: right;
-    width: 130px;
-    text-align: center;
+    width: 50px;
+    height: 450px;
+
 }
-#btnLat button{
-    width: 120px;
-    height: 40px;
-    background-color: transparent;
+#btnLat button, a{
+    display: flex;
+    width: 35px;
+    height: 25px;
+    background: white;
+    border-radius: 10px 10px;
+    
+}
+ul{
+    list-style-type: none;
+    margin: 3px;
+    padding: 0;
+
+}
+li{
+    border: #808da3 1px groove;
+    cursor: pointer;
+    margin: 6px;
+    border: transparent;
+}
+.icon{
+    color: black;
+    width: 70%;
+    height: 70%;
+}
+a{
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
