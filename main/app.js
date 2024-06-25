@@ -4,8 +4,11 @@
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 
+
+
 async function hello(codigo,descrição,quantidade,valor){
 
+    var cod = document.getElementById('codigo')
     const db = await open({
         filename: './banco.db',
         driver: sqlite3.Database,
@@ -18,7 +21,7 @@ async function hello(codigo,descrição,quantidade,valor){
     //db.run('CREATE TRIGGER IF NOT EXISTS update_codigo AFTER INSERT ON peça_de_moto BEGIN UPDATE peça_de_moto SET codigo = "R" || printf("%05d", NEW.id) WHERE id = NEW.id;END')
     db.run('INSERT INTO tabela(codigo,descrição, quantidade, valor) VALUES (?,?,?,?)',[
 
-        codigo,
+        cod,
         descrição, 
         quantidade, 
         valor]);
@@ -26,5 +29,10 @@ async function hello(codigo,descrição,quantidade,valor){
     //db.run('DROP TABLE tabela')
 }
 
-hello("nome","teste","teste","teste");
+
+    const abrirJanela = document.getElementById('cad');
+
+    abrirJanela.addEventListener('click',() => {
+        window.open('./index.html','blank','width=500,height=500,left=500,top=100,resizable=yes,scrollbars=yes');
+    });
 
