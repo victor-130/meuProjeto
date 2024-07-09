@@ -10,6 +10,7 @@
 <body>
     <script src="./app.js"></script>
     <script src="./script.js"></script>    
+    <script src="./index.js"></script>
     <div class="main">
         <header>
             <div id="logo1">
@@ -18,53 +19,24 @@
         </header>
 
         <section id="teste1">
-            <div id="divBusca">              
+            <div id="divBusca" >              
                 <img src="./img/lupa.png" alt="Buscar...">
                 <input type="text" name="txtBusca" value="" placeholder="pesquisar..." style="font-style: italic;">
-                <button type="button">Buscar</button>
+                <button type="button" onclick="listarProdutos()">Buscar</button>
             </div>
-        
-            <div style="height: 340px;" >
-                <table class="tabela">
-                        <caption>titulo</caption>                    
-                    <tbody class="titulos">
-                        <tr>
-                            <td>cod</td>
-                            <td style="width: 190px;">descrição</td>
-                            <td>quantidade</td>
-                            <td>valor</td>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr >
-                            <td id="cod"></td>
-                            <td style="width: 190px;" id="des"></td>
-                            <td></td id="qnt">
-                            <td></td id="val">
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="titulo base">
+                <div class="codigo tit">COD.</div>
+                <div class="descriçao tit">DESCRIÇÃO</div>
+                <div class="quantidade tit">QNT.</div>
+                <div class="valor tit">VALOR</div>
             </div>
+            <ol id="lista">
+            </ol>
         </section>
         <div id="barraLat">
             <div id="btnLat">
-                <ul>
-                    <li>
-                        <a id="addPeça" value="adicioar peça">
-                            <img src="./icones/soma.svg" alt="adicionar item" class="icon">
-                        </a>
-                    </li>
-                    <li>
-                        
-                        <a href="" target="" id="edit">
-                            <img src="./icones/editar.svg" alt="editar" class="icon">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img  src="./icones/apagar.svg" alt="apagar" class="icon">
-                        </a>
-                    </li>
+                <ul id="ul">
+
 
                 </ul>
             </div> 

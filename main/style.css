@@ -3,6 +3,8 @@ body{
     display: flex;
     justify-content: center;
     background-color: black;
+    align-content: center;
+    height: 100vh;
     
 }
 
@@ -18,13 +20,13 @@ body{
 }
 #teste1{   
 
-    width: 400px;
+    width: 404px;
     height:450px;
     background-color: rgb(236, 240, 244);
-
+    justify-content: center;
     border-radius: 10px;
     box-shadow: -6px 6px 5px 0px rgba(0,0,0,0.75);
-    margin: 2px 0px 10px 48px;
+    margin: 2px 0px 10px 46px;
     
 
 }
@@ -69,6 +71,7 @@ header{
     border: none;
     height: 35px;
     width: 300px;
+    
 }
 #divBusca button{
     border: none;
@@ -81,23 +84,75 @@ header{
     cursor: pointer;
 
 }
+.base{    
+    display: flex;
+    align-items: center;      
+}
+#lista{
+    margin-top: 2px;
+    list-style-type: none;
+    padding: 0;
 
-.tabela{
+}
+#opçoes{
+    margin-top: 2px;
+    width: 394px;
+    font-size: 14px;
+    font-style:oblique ;
+    height: 50px;
+    border: 1px #000000 solid;
+}
+
+.titulo{
     width: 400px;
-    border-collapse: collapse;
+    background-color: rgb(43, 55, 214);
+    color: white;
+    height: 30px;
 }
-.tabela td,.tabela caption{
- 
-    height: 20px;
-   
+.tit{
+    display: flex;
+    align-items: center;
+    height: 100%;   
+    border-right:1px #ffffff solid;
+    font-size: 11px;
 }
-.tabela .titulos, .tabela caption{
-    background-color: rgba(66, 124, 218, 0.819);  
-    border-bottom: 1px #000 solid;
-}    
-/*.tabela caption{
-    border-bottom: none;
-}*/
+.op{
+    border-right: 1px rgba(0, 0, 0, 0.144) solid;
+}
+.codigo{
+    height: 100%;
+    width: 43px;
+    justify-content: center;
+}
+.descriçao{
+    width: 265px;
+    padding: 2px;
+}
+.modelo-marca{
+    display: flex;
+    
+}
+#modelo{
+    width: 150px;
+}
+
+.quantidade{
+    height: 100%;
+    width: 35px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.valor{
+    align-items: center;
+    height: 100%;
+    width: 50px;
+    justify-content: center;
+    display: flex;
+}
+#valor-opçao{
+    width: 51px;
+}
 #barraLat{
 
     display: flex;
@@ -113,6 +168,9 @@ header{
     background: white;
     border-radius: 10px 10px;
     
+}
+button:active, a:active, li:active{
+    opacity: 0.07;
 }
 ul{
     list-style-type: none;

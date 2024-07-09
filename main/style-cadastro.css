@@ -19,3 +19,24 @@ form{
 label{
     color: white;
 }
+#cad :active{
+    opacity: 0.8;
+}
+#cad{
+    width: 90px;
+    height: 30px;
+    border: none;
+    background-color: rgb(10, 17, 142);
+    color: white;
+    font-size: 15px;
+    font-style: oblique;
+}
+#cancela-cad{
+    width: 90px;
+    height: 30px;
+    border: none;
+    
+    color: rgb(10, 17, 142);
+    font-size: 15px;
+    font-style: oblique;
+}

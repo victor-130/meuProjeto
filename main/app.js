@@ -1,5 +1,5 @@
 
-//var nome = document.getElementById('codigo').value
+/*var nome = document.getElementById('codigo').value
 
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
@@ -36,3 +36,4 @@ async function hello(codigo,descrição,quantidade,valor){
         window.open('./index.html','blank','width=500,height=500,left=500,top=100,resizable=yes,scrollbars=yes');
     });
 
+*/
