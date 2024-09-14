@@ -1,0 +1,80 @@
+<div class="card">
+    <div class="card-body">
+        <h3>Adicionar peça</h3>
+        <form  action="/addpeca/nova" method="POST" onsubmit="return confirmaNova()">
+            <!--  -->
+            <label for="codigo">Codigo:</label>
+                <input type="text" name="codigo" required placeholder="numero diferente"><br>
+            <label for="produto">Produto: </label>
+                <input type="text" name="produto" required value="test31"><br>
+            <label for="modelo">Modelo:</label>
+                <input type="text" name="modelo" value="test31">
+            <label for="marca">Marca:</label>
+                <input type="text" name="marca" value="test31"><br>
+            <label for="quantidade">Quantidade: </label>
+                <input type="number" step="1" name="quantidade" value="1">
+
+            <label for="valorc">Valor de compra:</label>
+                <input type="number" name="valorc" step="0.01" value="1">
+
+            <label for="valorv">Valor de Compra:</label>
+                <input type="number" name="valorv" step="0.5" value="1" ><br>
+            
+            <button type="submit" class="btn btn-success" name="salvar">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<style>
+  .alinha-form{
+    display: flex;
+    flex-direction: column; /* Coloca os elementos em uma coluna */
+    gap: 10px; /* Espaçamento entre os elementos */
+  }
+input{
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid;
+}
+input[name=codigo],[name=valorc],[name=valorv]{
+    max-width: 80px;
+}
+input[name=produto]{
+    width: 500px;
+}
+input[name=modelo]{
+    width: 250px;
+}
+input[name=marca]{
+    width: 197px;
+}
+input[name=quantidade]{
+    max-width: 57px;
+}
+button{
+    max-width: 80px;
+}
+</style>
+
+<script>
+    const form = {
+        codigo: () => document.getElementsByName('codigo')[0],
+        produto: () => document.getElementsByName('produto')[0],
+        modelo: () => document.getElementsByName('modelo')[0],
+        marca: () => document.getElementsByName('marca')[0],
+        quantidade: () => document.getElementsByName('quantidade')[0],
+        valorc: () => document.getElementsByName('valorc')[0],
+        valorv: () => document.getElementsByName('valorv')[0]
+    }
+    function confirmaNova(){
+        const confirmaCodigo =  `Código: ${form.codigo().value}\n`
+        const confirmaProduto = `Produto: ${form.produto().value}\n`
+        const confirmaModelo = `Modelo: ${form.modelo().value}\n`
+        const confirmaMarca = `Marca: ${form.marca().value}\n`
+        const confirmaQuantidade = `Quantidade: ${form.quantidade().value}\n`
+        const confirmavalorc = `Valor de Compra: ${form.valorc().value}      `
+        const confirmaValorv = `Valor de venda: ${form.valorv().value}\n`
+
+    return confirm(confirmaCodigo+confirmaProduto+confirmaModelo+confirmaMarca+confirmaQuantidade+confirmavalorc+confirmaValorv)
+}
+</script>

@@ -1,0 +1,1 @@
+no home exibir dados do banco de dados
