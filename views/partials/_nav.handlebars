@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
       <img src="/img/logo.png" alt="Logo">
         Rota 21 
     </a>      
-    <form class="d-flex" role="search"></form>
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="Search">
-      <button class="btn btn-outline-primary" type="submit">Buscar</button>
+    <form class="d-flex" role="search" method="GET" action="/" id="searchForm"></form>
+      <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" id="Search" name="Search" value="{{Search}}">
+      <button class="btn btn-outline-primary" type="submit" form="searchForm" >Buscar</button>
     </form>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -49,3 +49,19 @@ img{
   max-width: 350px;
 }
 </style>
+
+<script>
+const form = document.getElementById('searchForm');
+const searchInput = document.getElementById('Search');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // Impede o envio imediato
+  const searchValue = searchInput.value;
+  
+  // Define a nova URL com o valor da busca como parte da rota
+  form.action = `/${searchValue}`;
+  
+  // Agora, envia o formulário com a nova URL
+  form.submit();
+  });
+</script>

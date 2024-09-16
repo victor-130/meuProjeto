@@ -3,6 +3,7 @@
   <a class="btn btn-primary btn-lg" href="/addpeca/novapeca" role="button">Nova peça</a>
 </div>-->
 <div class="bg-light p-2 rounded-lg m-3 bodyhome" >
+{{#if produto.length}}
   {{#each produto}} 
   <section id="item">
       <div class="">
@@ -21,9 +22,14 @@
       </div>
   </section>    
     {{else}}
-      <h4>Nenhum produto</h4>
+      <h4>esse produto não existe</h4>
 
     {{/each}} 
+{{else}}
+<div>
+  faça a pesquisa
+</div>
+{{/if}}
 </div>
 <style>
 .bodyhome , .titulo{

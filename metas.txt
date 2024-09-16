@@ -1,1 +1,9 @@
-no home exibir dados do banco de dados
+no home exibir dados do banco de dados - ok
+exibir mensaem quando nao tiver o produto
+deixar o nome da pesquisa no input
+outros filtros de pesquisa
+
+mensagem se foi salvo ou não
+criar a mascara do codigo
+melhoras letras font das letras
+colocar toas as palavras do produtos em capslook

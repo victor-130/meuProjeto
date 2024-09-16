@@ -7,6 +7,8 @@ const path = require('path')
 
 const database = require('./src/config/database');
 const Produto = require('./src/models/Produto');
+const { Sequelize } = require("sequelize")
+const Op = Sequelize.Op
 
 // config
     //Template Engine
@@ -46,14 +48,37 @@ app.post('/addpeca/nova',  (req,res) => {
         console.log(err)
     }
 })
+app.get('/:Search',(req,res) => {
 
-app.get('/',(req,res) => {
-    Produto.findAll().then(produto => {
-        res.render('admin/home',{produto: produto})
-    }).catch((err) => {
-        console.error(err)
-    })
+    const buscaPeça = req.params.Search
+    console.log('aqui ta minha ' +buscaPeça)
     
+    
+    try{
+
+
+        /*if(!buscaPeça){
+            return res.render('admin/home',{produto:[]})
+        }*/
+         Produto.findAll({
+            where: {
+                produto:{
+                    [Op.like]: `%${buscaPeça}%`
+                }
+            }
+        }).then(produto => {
+            res.render('admin/home',{produto: produto})
+        }).catch((err) => {
+            console.error(err)
+        })
+        
+    }catch (err) {
+        console.error('Erro inesperado:', err);
+        res.status(500).send('Erro inesperado');
+    }
+})
+app.get('/',(req,res) => {
+    res.render('admin/home')
 })
 //Outros
 const PORT = 8082
