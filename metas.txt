@@ -1,9 +1,13 @@
+confirmação de envio de dados - ok (em caso de erro tentar com alert em vez de confirm)
 no home exibir dados do banco de dados - ok
-exibir mensaem quando nao tiver o produto
+colocar todas as palavras do produtos em capslook - ok
+adicionar estoque - ok
+
+
+exibir mensagem quando nao tiver o produto
 deixar o nome da pesquisa no input
 outros filtros de pesquisa
-
 mensagem se foi salvo ou não
 criar a mascara do codigo
 melhoras letras font das letras
-colocar toas as palavras do produtos em capslook
+2 casas decimais no mysql

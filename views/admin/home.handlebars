@@ -5,32 +5,34 @@
 <div class="bg-light p-2 rounded-lg m-3 bodyhome" >
 {{#if produto.length}}
   {{#each produto}} 
-  <section id="item">
-      <div class="">
-          <div class="codigo tit">
-            <b>código:</b> {{codigo}}</div>
-          <div class="produto tit"><b>Produto:</b> {{produto}}</div>
-          <div class="modelo"><b>Modelo:</b>
-            <select name="modelos" id="modelos">
-                {{modelo}}
-            </select>
-          </div>
-          <div class="marca"><b>Marca:</b>{{marca}} </div><br>
-          <div class="quantidade tit">
-            <b class="quantidade">Quantidade disponivel:</b>{{quantidade}}</div>
-          <div class="valor tit"><b>Valor:</b>{{valorv}}</div>
-      </div>
-  </section>    
-    {{else}}
-      <h4>esse produto não existe</h4>
-
-    {{/each}} 
+    <section id="item">
+        <div class="">
+            <div class="codigo tit">
+              <b>código:</b> {{codigo}}</div>
+            <div class="produto tit"><b>Produto:</b> {{produto}}</div>
+            <div class="modelo"><b>Modelo:</b>
+              <select name="modelos" id="modelos">
+                  {{modelo}}
+              </select>
+            </div>
+            <div class="marca"><b>Marca:</b>{{marca}} </div><br>
+            <div class="quantidade tit">
+              <b class="quantidade">Quantidade disponivel:</b>{{quantidade}}</div>
+            <div class="valor tit"><b>Valor:</b>{{valorv}}</div>
+        </div>
+    </section>  
+  {{/each}} 
 {{else}}
-<div>
-  faça a pesquisa
-</div>
+    {{#if Search}}
+      <p>nenhum produto encontrado com o nome"{{Search}}"</p>
+    {{else}}
+    <div id="">
+      faça a pesquisa
+    </div>
+    {{/if}}
 {{/if}}
 </div>
+
 <style>
 .bodyhome , .titulo{
   width: 100%;
@@ -72,4 +74,8 @@ select{
   font-size: 18px;
   display: inline-block;
 }
+#semPesquisa{
+  text-align: center;
+}
 </style>
+

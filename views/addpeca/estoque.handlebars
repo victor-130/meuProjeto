@@ -1,0 +1,100 @@
+<div class="card mt-3" id="principal"></div>
+    <div class="card-body">
+        <form action="/addpeca/estoque" method="get">
+            <h3>Adicionar Estoque</h3> 
+            <input type="text" value="" id="buscaCodigo" name="buscaCodigo">
+            <button class="btn btn-success" type="submit">Buscar</button> 
+        </form> 
+        <hr>   
+        {{#if produto}}
+                
+            <div name="updateCodigo">
+            <b>código:</b> {{produto.codigo}}
+            </div>
+            <div name="updateProduto" ><b>Produto:</b> {{produto.produto}}</div>
+            <div name=""><b>Modelo:</b>
+            <select name="updateModelo" id="modelos">
+                {{produto.modelo}}
+            </select>
+            </div>
+            <div name="updateMarca"><b>Marca: </b>{{produto.marca}} </div><br>
+
+            <form action="/addpeca/estoque/u" method="post" class="form">
+            <input type="hidden" name="cod" value="{{produto.codigo}}">
+                <label for="quantidade">Quantidade: </label>
+                <input type="number" step="1" name="addQuantidade" value="1">
+                <label for="valorc">Valor de compra:</label>
+                <input type="number" name="addValorC" step="0.01" value="1">
+
+                <label for="valorv">Valor de venda:</label>
+                <input type="number" name="addValorV" step="0.5" value="{{produto.valorv}}" id="idValorV" ><br>
+            
+            <button type="submit" class="btn btn-success mt-2" name="salvar " onclick="">Salvar</button>  
+            </form>
+        {{else}}
+            {{#if buscaCodigo}} <!-- Se buscaCodigo estiver definido, mas o produto não foi encontrado -->
+            <p>Produto não encontrado para o código: {{buscaCodigo}}. Tente novamente.</p>
+        {{else}} <!-- Se não houver busca -->
+            <p>Por favor, insira um código de produto para buscar.</p>
+        {{/if}}
+        {{/if}}
+        </form>
+    </div>
+</div> 
+<style>
+#principal{
+    margin-left: 20px;
+}
+  .alinha-form{
+    display: flex;
+    flex-direction: column; /* Coloca os elementos em uma coluna */
+    gap: 10px; /* Espaçamento entre os elementos */
+  }
+input{
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid;
+}
+#codadd{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+input[name=updateCodigo]{
+    max-width: 80px;
+}
+input[name=updateProduto]{
+    width: 500px;
+}
+input[name=updateModelo]{
+    width: 250px;
+}
+input[name=updateMarca]{
+    width: 197px;
+}
+.form{
+    max-width: 85%;
+}
+input[name=addQuantidade]{
+    max-width: 57px;+
+}
+input[name=addValorC],[name=addValorV]{
+   max-width: 80px; 
+}
+input[name=addValorC],[name=addValorV],[name=addQuantidade]{
+    display: inline-block;
+    border: 0.5px solid rgba(160, 156, 156, 0.388);
+    padding-left: 10px;
+    height: 35px;
+}
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+}
+button{
+    max-width: 80px;
+}
+</style>
+
+<script>
+
+</script>
