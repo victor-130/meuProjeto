@@ -3,11 +3,18 @@ no home exibir dados do banco de dados - ok
 colocar todas as palavras do produtos em capslook - ok
 adicionar estoque - ok
 
+editar footer <-
+    criar modal ao clicar com itens adicionados ao carrinho
+        colocar bootão para excluir do carrinho
+        colocar borao pra editar a quantidade
+        colocar informaçoes da peça adicioinada
 
+    
 exibir mensagem quando nao tiver o produto
 deixar o nome da pesquisa no input
 outros filtros de pesquisa
 mensagem se foi salvo ou não
 criar a mascara do codigo
-melhoras letras font das letras
+melhorar font das letras
 2 casas decimais no mysql
+adicionar botao "adicioonar ao carrinho" e "Editar"

@@ -1,5 +1,5 @@
 <div class="card mt-3" id="principal"></div>
-    <div class="card-body">
+    <div class="card-body bg-light p-2 rounded-lg m-3 ">
         <form action="/addpeca/estoque" method="get">
             <h3>Adicionar Estoque</h3> 
             <input type="text" value="" id="buscaCodigo" name="buscaCodigo">
@@ -32,18 +32,16 @@
             <button type="submit" class="btn btn-success mt-2" name="salvar " onclick="">Salvar</button>  
             </form>
         {{else}}
-            {{#if buscaCodigo}} <!-- Se buscaCodigo estiver definido, mas o produto não foi encontrado -->
-            <p>Produto não encontrado para o código: {{buscaCodigo}}. Tente novamente.</p>
-        {{else}} <!-- Se não houver busca -->
             <p>Por favor, insira um código de produto para buscar.</p>
-        {{/if}}
         {{/if}}
         </form>
     </div>
 </div> 
 <style>
 #principal{
-    margin-left: 20px;
+    
+}
+.geral{
 }
   .alinha-form{
     display: flex;
@@ -73,7 +71,7 @@ input[name=updateMarca]{
     width: 197px;
 }
 .form{
-    max-width: 85%;
+    max-width: 100%;
 }
 input[name=addQuantidade]{
     max-width: 57px;+

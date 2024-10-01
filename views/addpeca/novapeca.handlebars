@@ -14,12 +14,12 @@
             <label for="marca">Marca:</label>
                 <input type="text" name="marca" value="test31" id="idMarca" oninput="this.value = this.value.toUpperCase();"><br>
             <label for="quantidade">Quantidade: </label>
-                <input type="number" step="1" name="quantidade" value="1" id="idQuantidade">
+                <input type="number" step="1" name="quantidade" value="1" min="0"  id="idQuantidade">
             <label for="valorc">Valor de compra:</label>
-                <input type="number" name="valorc" step="0.01" value="1" id="idValorC">
+                <input type="number" name="valorc" step="0.01" value="1" min="0"  id="idValorC">
 
             <label for="valorv">Valor de Compra:</label>
-                <input type="number" name="valorv" step="0.5" value="1" id="idValorV" ><br>
+                <input type="number" name="valorv" step="0.5" value="1" min="0" id="idValorV" ><br>
             
             <button type="submit" class="btn btn-success mt-2" name="salvar " >Salvar</button>
         </form>

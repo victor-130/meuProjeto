@@ -1,0 +1,151 @@
+<footer class="rodape" >
+    <div class="ajustes">
+        <button class="btn btnModal" id="buttonCarrinho" onclick="abrir()">
+        Adicionados ao Carrinho |
+            <img src="/img/cart-shopping-solid.svg" class="fa-solid fa-cart-shopping fa-beat"></img>
+        </button>    
+    </div>
+</footer>
+<div id="janelaCarrinho">
+    <div id="barraCarrinho">
+        <span class="fechar" onclick="fechar()">&times;</span>
+    </div>
+    <ul class="listaModal">
+        <li>
+            <div>
+                <span id="codigoCart">Codigo: R10000</span><br>
+                <span id="produtoCart" >Produto: bola</span><br>
+                <span id="modeloCart">Modelo: azul</span>
+                <span id="marcaCart">Marca: jabulane</span><br>
+                <span id="quantidadeCart">Quantidade:
+                    <button class="btn-qnt">-</button>
+                    <span id="qntCart">0</span>
+                    <button class="btn-qnt">+</button>
+                </span> 
+                <span id="valorCart">valor: 10,00</span>  
+            </div> 
+            <div id="div2Cart">
+                <button id="btnCart">
+                <img src="/img/trash.png" alt="" id="trashCart">
+                </button>  
+            </div>   
+        </li>
+        
+        <li>
+            peça 2
+        </li>
+    </ul>
+</div>
+<style>
+li div{
+    width: 380px;
+    display: inline-block;
+}
+#div2Cart{
+    width: 40px;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    display:inline-flex;
+}
+#trashCart{
+    width: 17px;
+    height: 20px;
+    padding: 2px 0;
+}
+#btnCart{
+    color: white;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 6px;
+    
+}
+.btn-qnt,#qntCart {
+    border: none;
+    background-color: white;
+}
+.rodape {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(191, 220, 221);
+  
+}
+.ajustes{
+    display: flex;
+    float: right;
+    padding-right: 10px;
+    align-items:baseline;
+    justify-items: center;
+}
+p, button{
+display: inline-block;
+align-items: center;
+}
+p{
+    margin: 0;
+    font-size: large;
+}
+#barraCarrinho{
+    background-color: rgb(211, 241, 242);
+}
+.fechar{
+    color: white;
+    margin-left: 5px;
+}
+.fechar:hover,
+.fechar:focus {
+    cursor: pointer;
+    color:rgb(61, 202, 207) ;
+}
+.listaModal{
+  list-style: none;  
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  padding:2px ;
+  align-items: center;
+}
+.listaModal li{
+    border: 1px rgb(94, 185, 221) solid ;
+    width: 90%;
+    margin-top: 4px;
+    border-radius: 5px;
+    padding: 6px;
+    justify-items: center;
+    font-size: small;
+    display: inline-flex;
+}
+#janelaCarrinho{
+    background-color: rgb(236, 243, 243);
+    width: 100px;
+    position: fixed;
+    right: 30px;
+    bottom: 45px;
+    width: 500px;
+    height: 300px;
+    z-index: 10;
+    
+}
+</style>
+
+<script>//display: none;
+    const janelaCarrinho = document.getElementById('janelaCarrinho')
+
+    function abrir(){
+        janelaCarrinho.style.display = janelaCarrinho.style.display === 'block' ? 'none' : 'block'
+    }
+    function fechar(){
+        janelaCarrinho.style.display = 'none'
+    }
+    window.addEventListener('click', function(event){
+        if(!event.target.matches('.btnModal') && !event.target.closest('#janelaCarrinho')){
+            fechar()
+        }
+    })
+    let adicionados = []
+    function adicionarCarrinho(codigo){
+        adicionados.push(codigo)
+        console.log(adicionados)
+    }
+</script>

@@ -55,13 +55,11 @@ const form = document.getElementById('searchForm');
 const searchInput = document.getElementById('Search');
 
 form.addEventListener('submit', function(event) {
-  event.preventDefault(); // Impede o envio imediato
+  event.preventDefault(); 
   const searchValue = searchInput.value;
   
-  // Define a nova URL com o valor da busca como parte da rota
   form.action = `/${searchValue}`;
   
-  // Agora, envia o formulário com a nova URL
   form.submit();
   });
 </script>

@@ -2,25 +2,32 @@
 <div class="bg-light p-5 rounded-lg m-3 bodyhome">
   <a class="btn btn-primary btn-lg" href="/addpeca/novapeca" role="button">Nova peça</a>
 </div>-->
-<div class="bg-light p-2 rounded-lg m-3 bodyhome" >
+<div class="bg-light p-4 rounded-lg m-3 bodyhome" >
 {{#if produto.length}}
   {{#each produto}} 
     <section id="item">
         <div class="">
-            <div class="codigo tit">
+          <input type="hidden" value="{{codigo}} ">
+            <div class="codigo">
               <b>código:</b> {{codigo}}</div>
-            <div class="produto tit"><b>Produto:</b> {{produto}}</div>
+            <div class="produto"><b>Produto:</b> {{produto}}</div>
             <div class="modelo"><b>Modelo:</b>
               <select name="modelos" id="modelos">
                   {{modelo}}
               </select>
             </div>
             <div class="marca"><b>Marca:</b>{{marca}} </div><br>
-            <div class="quantidade tit">
+            <div class="quantidade">
               <b class="quantidade">Quantidade disponivel:</b>{{quantidade}}</div>
-            <div class="valor tit"><b>Valor:</b>{{valorv}}</div>
+            <div class="valor"><b>Valor:</b>{{valorv}}</div>
+        </div>
+        <div class="botoes">
+          <button class="btn btn-success btn-adicionar" onclick="adicionarCarrinho('{{codigo}}')">
+            Adicionar
+          </button >
         </div>
     </section>  
+
   {{/each}} 
 {{else}}
     {{#if Search}}
@@ -40,11 +47,11 @@
 section{
   margin: 2px;
   background-color: rgb(255, 255, 255); 
-  border: 1px solid;
+  border: 1px solid rgba(104, 101, 101, 0.673);
   display: flex;
   border-radius: 5px ;
   padding-left: 5px;
-  box-shadow: -3px 3px 2px 0px rgba(0,0,0,0.50);  
+  box-shadow: -2px 2px 1px 0px rgba(104, 101, 101, 0.5);  
 }
 .codigo{
     font-size: 14px;
@@ -74,8 +81,13 @@ select{
   font-size: 18px;
   display: inline-block;
 }
-#semPesquisa{
-  text-align: center;
+.botoes{
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+}
+.btn-adicionar{
+  padding: 10px;
 }
 </style>
 
