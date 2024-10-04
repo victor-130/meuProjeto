@@ -7,22 +7,22 @@
   {{#each produto}} 
     <section id="item">
         <div class="">
-          <input type="hidden" value="{{codigo}} ">
+          <input type="hidden" value="{{codigo}}" >
             <div class="codigo">
-              <b>código:</b> {{codigo}}</div>
-            <div class="produto"><b>Produto:</b> {{produto}}</div>
+              <b>código:</b> <span>{{codigo}}</span></div>
+            <div class="produto"><b>Produto:</b><span>{{produto}}</span></div>
             <div class="modelo"><b>Modelo:</b>
-              <select name="modelos" id="modelos">
-                  {{modelo}}
+              <select name="modelos">
+                <option value="{{modelo}}">{{modelo}}</option>
               </select>
             </div>
-            <div class="marca"><b>Marca:</b>{{marca}} </div><br>
+            <div class="marca"><b>Marca:</b><span>{{marca}}</span></div><br>
             <div class="quantidade">
-              <b class="quantidade">Quantidade disponivel:</b>{{quantidade}}</div>
-            <div class="valor"><b>Valor:</b>{{valorv}}</div>
+              <b class="quantidade">Quantidade disponivel:</b><span>{{quantidade}}</span></div>
+            <div class="valor"><b>Valor: <span class="rs">R$</span> </b><span>{{valorv}}</span></div>
         </div>
         <div class="botoes">
-          <button class="btn btn-success btn-adicionar" onclick="adicionarCarrinho('{{codigo}}')">
+          <button class="btn btn-success btnAdicionar">
             Adicionar
           </button >
         </div>
@@ -52,6 +52,9 @@ section{
   border-radius: 5px ;
   padding-left: 5px;
   box-shadow: -2px 2px 1px 0px rgba(104, 101, 101, 0.5);  
+}
+section div:first-child{
+width: 76%;
 }
 .codigo{
     font-size: 14px;
@@ -86,7 +89,7 @@ select{
   align-items: center;
   margin-left: 30px;
 }
-.btn-adicionar{
+.btnAdicionar{
   padding: 10px;
 }
 </style>

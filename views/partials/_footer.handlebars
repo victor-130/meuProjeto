@@ -10,59 +10,48 @@
     <div id="barraCarrinho">
         <span class="fechar" onclick="fechar()">&times;</span>
     </div>
+
     <ul class="listaModal">
-        <li>
-            <div>
-                <span id="codigoCart">Codigo: R10000</span><br>
-                <span id="produtoCart" >Produto: bola</span><br>
-                <span id="modeloCart">Modelo: azul</span>
-                <span id="marcaCart">Marca: jabulane</span><br>
-                <span id="quantidadeCart">Quantidade:
-                    <button class="btn-qnt">-</button>
-                    <span id="qntCart">0</span>
-                    <button class="btn-qnt">+</button>
-                </span> 
-                <span id="valorCart">valor: 10,00</span>  
-            </div> 
-            <div id="div2Cart">
-                <button id="btnCart">
-                <img src="/img/trash.png" alt="" id="trashCart">
-                </button>  
-            </div>   
-        </li>
         
-        <li>
-            peça 2
-        </li>
     </ul>
+
+    <div id="barBuy">
+        <div id="totalCart">TOTAL <span class="rs">R$</span> <span>0,00</span></div>
+
+        <button id="btnBuy" class=""> 
+                COMPRAR
+        </button>  
+    </div>
 </div>
 <style>
 li div{
     width: 380px;
     display: inline-block;
 }
-#div2Cart{
+.div2Cart{
     width: 40px;
     height: 80px;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content:center ;
     display:inline-flex;
 }
-#trashCart{
+.trashCart{
     width: 17px;
     height: 20px;
     padding: 2px 0;
 }
-#btnCart{
+.btnCart{
     color: white;
     background-color: #dc3545;
     border: none;
     border-radius: 6px;
     
 }
-.btn-qnt,#qntCart {
+.btn-qnt,.amountCart{
     border: none;
     background-color: white;
+    width: 20px;
+    text-align: center;
 }
 .rodape {
   position: fixed;
@@ -87,7 +76,8 @@ p{
     font-size: large;
 }
 #barraCarrinho{
-    background-color: rgb(211, 241, 242);
+    background-color: rgb(192, 219, 222);
+    height: 20px;
 }
 .fechar{
     color: white;
@@ -98,6 +88,31 @@ p{
     cursor: pointer;
     color:rgb(61, 202, 207) ;
 }
+#barBuy{
+    background-color:rgb(211, 241, 242);
+    bottom: 45px;
+    position: fixed;
+    width: 500px;
+    height: 40px;
+    align-items: center;
+    display: flex;
+}
+#btnBuy{
+    position: fixed;
+    right: 40px;
+    height: 30PX;
+    background-color: rgb(61, 154, 207);
+    border: 1px solid rgb(48, 118, 158);
+    color: white;
+    border-radius: 5px ;
+    
+}
+#totalCart{
+    margin-left: 10px;
+}
+.rs{
+    font-size: small;
+}
 .listaModal{
   list-style: none;  
   color: rgb(0, 0, 0);
@@ -105,6 +120,7 @@ p{
   flex-direction: column;
   padding:2px ;
   align-items: center;
+  
 }
 .listaModal li{
     border: 1px rgb(94, 185, 221) solid ;
@@ -115,6 +131,7 @@ p{
     justify-items: center;
     font-size: small;
     display: inline-flex;
+    
 }
 #janelaCarrinho{
     background-color: rgb(236, 243, 243);
@@ -123,13 +140,142 @@ p{
     right: 30px;
     bottom: 45px;
     width: 500px;
-    height: 300px;
+    min-height: 300px;
+    max-height: 500px;overflow-y: auto;
     z-index: 10;
-    
+    display: none;
 }
 </style>
 
-<script>//display: none;
+<script>
+    if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", ready)
+    }else{
+        ready()
+    }
+    var totalAmount = "0,00"
+    function ready(){
+        const removeProductButton = document.getElementsByClassName("btnCart")
+    for(var i = 0;i < removeProductButton.length;i++){
+        removeProductButton[i].addEventListener('click', removeProduct)
+    }
+    const amountCart = document.getElementsByClassName('amountCart')
+    for (var i = 0;i < amountCart.length;i++){
+        amountCart[i].addEventListener("change", checkIfInputIsNull)
+        }
+    const btnAdicionar = document.getElementsByClassName('btnAdicionar')
+    for(var i = 0;i < btnAdicionar.length;i++){
+        btnAdicionar[i].addEventListener('click', addProductToCard)
+    }
+    const purchaseButton = document.getElementById('btnBuy')
+    purchaseButton.addEventListener('click', MakePurchase)
+    }
+    function checkIfInputIsNull(event){
+        if(event.target.value === '0'){
+            event.target.parentElement.parentElement.parentElement.remove()
+        }
+    }
+    function MakePurchase(){
+
+        if(totalAmount === "0,00"){
+            alert("Seu carrinho está vazio")
+        }else{
+            //alert(`Obrigado pela compra!
+            //Valor do Pedido: R$${totalAmount}`)
+            let arrayDados = []
+            const productCartCod = document.getElementsByClassName("codigoCart")
+            const productQuantities = document.getElementsByClassName("amountCart");
+            for(var i = 0; i < productCartCod.length;i++){
+                //const code = document.querySelector('.codigoCart').innerText
+                const code = productCartCod[i].innerText;
+                const quantityOfProduct = productQuantities[i].value;
+                let codeSave = {
+                codigo: code,
+                quantity: quantityOfProduct
+                }
+                arrayDados.push(codeSave)
+            }
+            fetch('/finalizarCompra',{
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json', 
+                },body: JSON.stringify({
+                    produtos: arrayDados        
+                    })        
+            }).then(response => response.json()).then(data => {
+                console.log('Compra finalizada:', data);  
+            })
+            .catch(error => {
+                console.error('Erro ao finalizar a compra:', error);  
+            });
+        }
+        document.querySelector('#janelaCarrinho ul').innerHTML = "Carrinho vazio"
+        updateTotal()
+    }
+    function addProductToCard(event){
+        const button = event.target
+        const productInfos = button.parentElement.parentElement
+        const codCart = productInfos.querySelector('.codigo span').innerText
+        const productCart = productInfos.querySelector('.produto span').innerText
+        const productModelCart = productInfos.querySelector('.modelo option').innerText
+        const productBrandCart = productInfos.querySelector('.marca span').innerText
+        const productPriceCart = productInfos.querySelector('.valor').children[1].innerText
+    
+        const productCartCod = document.getElementsByClassName("codigoCart")
+        for(var i = 0;i < productCartCod.length;i++){
+            if(productCartCod[i].innerText === codCart){
+                productCartCod[i].parentElement.parentElement.getElementsByClassName('amountCart')[0].value++
+                updateTotal()
+                return
+            }
+        }
+        let newCartProduct = document.createElement("li")
+        newCartProduct.classList.add("cart-product")
+        
+        newCartProduct.innerHTML = `<div class="dateProduct">
+                <input type="hidden" value="{{codigo}}">
+                <label for="codigoCart">Codigo:</label>
+                <span class="codigoCart">${codCart}</span><br>
+                <span class="produtoCart" >Produto: ${productCart}</span><br>
+                <span class="modeloCart">Modelo: ${productModelCart}</span>
+                <span class="marcaCart">Marca: ${productBrandCart}</span><br>
+                <span class="quantidadeCart">Quantidade:
+                    <button class="btn-qnt">-</button>
+                    <input class="amountCart" value="1" type="number"></input>
+                    <button class="btn-qnt">+</button>
+                </span> 
+                <span class="productPrice">valor: R$ <span class="price">${productPriceCart}</span></span>  
+            </div> 
+            <div class="div2Cart">
+                <button class="btnCart">
+                <img src="/img/trash.png" alt="" class="trashCart" 2>
+                </button>  
+            </div>   `
+        const listCart = document.querySelector('#janelaCarrinho ul')
+        listCart.append(newCartProduct)
+
+        updateTotal()
+        newCartProduct.getElementsByClassName('amountCart')[0].addEventListener('change', checkIfInputIsNull)
+        newCartProduct.getElementsByClassName('btnCart')[0].addEventListener('click', removeProduct)
+    }
+    function removeProduct(event){
+        event.stopPropagation()
+        event.currentTarget.parentElement.parentElement.remove()
+        updateTotal()
+    }
+    function updateTotal(){
+        totalAmount = 0
+    const cartProduct = document.getElementsByClassName('cart-product')
+    for(var i = 0;i<cartProduct.length;i++){
+         const productPrice = cartProduct[i].getElementsByClassName('price')[0].innerText.replace(",",".")
+         const amountCart = cartProduct[i].getElementsByClassName('amountCart')[0].value
+         totalAmount += productPrice * amountCart
+    }
+    totalAmount = totalAmount.toFixed(2)
+    totalAmount = totalAmount.replace(".",",")
+    document.querySelector('#totalCart').children[1].innerText = totalAmount
+    }
+    
     const janelaCarrinho = document.getElementById('janelaCarrinho')
 
     function abrir(){
@@ -139,13 +285,8 @@ p{
         janelaCarrinho.style.display = 'none'
     }
     window.addEventListener('click', function(event){
-        if(!event.target.matches('.btnModal') && !event.target.closest('#janelaCarrinho')){
+        if(!event.target.matches('.btnModal') && !event.target.closest('#janelaCarrinho') && !event.target.matches('.btnAdicionar')){
             fechar()
         }
     })
-    let adicionados = []
-    function adicionarCarrinho(codigo){
-        adicionados.push(codigo)
-        console.log(adicionados)
-    }
 </script>

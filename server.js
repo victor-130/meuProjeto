@@ -13,7 +13,7 @@ const Op = Sequelize.Op
     
     //Template Engine
     app.use(bodyParser.urlencoded({extended: true}))
-    app.use(bodyParser.json())
+    app.use(express.json())
     //handlebars
     app.engine('handlebars', engine({defaultLayout: 'main',
         runtimeOptions: {
@@ -66,16 +66,44 @@ app.get('/:Search',(req,res) => {
         }).catch((err) => {
             console.error(err)
         })
-        
     }catch (err) {
         console.error('Erro inesperado:', err);
         res.status(500).send('Erro inesperado');
     }
 })
+app.post('/finalizarCompra', (req, res) => {
+    const { produtos } = req.body; 
+    produtos.forEach(produto => {
+        const updateQuantity = parseInt(produto.quantity)
+        
+        try{
+            Produto.findOne({
+                where:{
+                    codigo:{
+                        [Op.eq]:produto.codigo
+                    }
+                }
+            }).then((produto) => {
+                let newQuantity =  produto.quantidade - updateQuantity
 
-/*app.get('/addpeca/estoque',(req,res) => {
-    res.render('addpeca/estoque')
-})*/
+                produto.update({
+                    quantidade: newQuantity
+                })
+                
+            }).then(() => {
+                console.log('quantidade atualizada')
+            }).catch((err) => {
+                console.log('Erro ao atualizar o produto:', err);
+            });
+        }catch(err){
+            console.error('Erro inesperado:', err);
+        }
+    });
+    
+
+    res.json({ message: 'Compra finalizada com sucesso!', produtos});
+});
+
 app.get('/addpeca/estoque', (req,res) => {
     
     const buscaCodigo = req.query.buscaCodigo
@@ -105,7 +133,7 @@ app.post('/addpeca/estoque/u', (req,res) => {
 
     try{
         Produto.findOne({
-            whre: {
+            where: {
                 codigo: {
                     [Op.eq]: buscaCodigo
                 }
@@ -141,6 +169,7 @@ app.post('/addpeca/estoque/u', (req,res) => {
 app.get('/',(req,res) => {
     res.render('admin/home')
 })
+
 //Outros
 const PORT = 8082
 app.listen(PORT, () =>{

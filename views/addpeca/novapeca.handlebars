@@ -18,10 +18,10 @@
             <label for="valorc">Valor de compra:</label>
                 <input type="number" name="valorc" step="0.01" value="1" min="0"  id="idValorC">
 
-            <label for="valorv">Valor de Compra:</label>
+            <label for="valorv">Valor de Venda:</label>
                 <input type="number" name="valorv" step="0.5" value="1" min="0" id="idValorV" ><br>
             
-            <button type="submit" class="btn btn-success mt-2" name="salvar " >Salvar</button>
+            <button type="submit" class="btn btn-success mt-2" name="salvar" >Salvar</button>
         </form>
     
     </div>
@@ -58,7 +58,7 @@ input[name=marca]{
 input[name=quantidade]{
     max-width: 57px;
 }
-button{
+button[name="salvar" ]{
     max-width: 80px;
 }
 </style>
@@ -86,7 +86,7 @@ function confirmaNova(){
         return confirm(confirmaCodigo+confirmaProduto+confirmaModelo+confirmaMarca+confirmaQuantidade+confirmavalorc+confirmaValorv)
         
         }else{
-            alert('erro no codigo')
+            alert('erro no codigo, codigo incorreto')
             return false
         }
     }
