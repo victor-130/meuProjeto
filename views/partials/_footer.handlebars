@@ -169,11 +169,15 @@ p{
     }
     const purchaseButton = document.getElementById('btnBuy')
     purchaseButton.addEventListener('click', MakePurchase)
+    loadCartFromLocalStorage()
     }
     function checkIfInputIsNull(event){
         if(event.target.value === '0'){
             event.target.parentElement.parentElement.parentElement.remove()
         }
+    }
+    function checkStoque(){
+
     }
     function MakePurchase(){
 
@@ -186,7 +190,7 @@ p{
             const productCartCod = document.getElementsByClassName("codigoCart")
             const productQuantities = document.getElementsByClassName("amountCart");
             for(var i = 0; i < productCartCod.length;i++){
-                //const code = document.querySelector('.codigoCart').innerText
+
                 const code = productCartCod[i].innerText;
                 const quantityOfProduct = productQuantities[i].value;
                 let codeSave = {
@@ -213,54 +217,92 @@ p{
         updateTotal()
     }
     function addProductToCard(event){
-        const button = event.target
-        const productInfos = button.parentElement.parentElement
-        const codCart = productInfos.querySelector('.codigo span').innerText
-        const productCart = productInfos.querySelector('.produto span').innerText
-        const productModelCart = productInfos.querySelector('.modelo option').innerText
-        const productBrandCart = productInfos.querySelector('.marca span').innerText
-        const productPriceCart = productInfos.querySelector('.valor').children[1].innerText
-    
-        const productCartCod = document.getElementsByClassName("codigoCart")
-        for(var i = 0;i < productCartCod.length;i++){
-            if(productCartCod[i].innerText === codCart){
-                productCartCod[i].parentElement.parentElement.getElementsByClassName('amountCart')[0].value++
-                updateTotal()
-                return
-            }
+
+        const productInfos = event.target.closest('#item')
+        const codCart =productInfos.querySelector('.codigo span').innerText
+
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || []
+
+        const existingProduct = cartItems.find(item => item.cod === codCart)
+
+        if(existingProduct){
+            existingProduct.quantity++
+        }else{
+            cartItems.push({
+                cod: codCart,
+                name: productInfos.querySelector('.produto span').innerText,
+                model: productInfos.querySelector('.modelo option').innerText,
+                brand: productInfos.querySelector('.marca span').innerText,
+                quantity: 1,
+                price: productInfos.querySelector('.valor').children[1].innerText
+            })
+            updateTotal()
         }
-        let newCartProduct = document.createElement("li")
-        newCartProduct.classList.add("cart-product")
+        localStorage.setItem('cart',JSON.stringify(cartItems))
+        loadCartFromLocalStorage();
         
-        newCartProduct.innerHTML = `<div class="dateProduct">
+ 
+}
+    function loadCartFromLocalStorage(){
+        const listCart = document.querySelector('#janelaCarrinho ul')
+        listCart.innerHTML = ''
+
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || []
+
+        cartItems.forEach(item => {
+            const newCartProduct = document.createElement('li')
+            newCartProduct.classList.add("cart-product")
+            newCartProduct.innerHTML = `<div class="dateProduct">
                 <input type="hidden" value="{{codigo}}">
                 <label for="codigoCart">Codigo:</label>
-                <span class="codigoCart">${codCart}</span><br>
-                <span class="produtoCart" >Produto: ${productCart}</span><br>
-                <span class="modeloCart">Modelo: ${productModelCart}</span>
-                <span class="marcaCart">Marca: ${productBrandCart}</span><br>
+                <span class="codigoCart"> ${item.cod}</span><br>
+                <span class="produtoCart" >Produto:  ${item.name}</span><br>
+                <span class="modeloCart">Modelo: ${item.model}</span>
+                <span class="marcaCart">Marca: ${item.brand}</span><br>
                 <span class="quantidadeCart">Quantidade:
                     <button class="btn-qnt">-</button>
-                    <input class="amountCart" value="1" type="number"></input>
+                    <input class="amountCart" value="${item.quantity}" type="number"></input>
                     <button class="btn-qnt">+</button>
                 </span> 
-                <span class="productPrice">valor: R$ <span class="price">${productPriceCart}</span></span>  
+                <span class="productPrice">valor: R$ <span class="price">${item.price}</span></span>  
             </div> 
             <div class="div2Cart">
                 <button class="btnCart">
                 <img src="/img/trash.png" alt="" class="trashCart" 2>
                 </button>  
             </div>   `
-        const listCart = document.querySelector('#janelaCarrinho ul')
-        listCart.append(newCartProduct)
 
-        updateTotal()
-        newCartProduct.getElementsByClassName('amountCart')[0].addEventListener('change', checkIfInputIsNull)
-        newCartProduct.getElementsByClassName('btnCart')[0].addEventListener('click', removeProduct)
+            listCart.append(newCartProduct)
+
+            newCartProduct.getElementsByClassName('amountCart')[0].addEventListener('change', function(e){
+                checkIfInputIsNull (e)
+                updateQuantityInLocalStorage(item.cod, e.target.value);
+            })
+            newCartProduct.getElementsByClassName('btnCart')[0].addEventListener('click',function(){
+                removeProduct(item.cod)
+            })   
+            updateTotal()   
+        })
+        
     }
-    function removeProduct(event){
+    function updateQuantityInLocalStorage(cod, newQuantity){
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || []
+        const product = cartItems.find(item => item.cod === cod)
+
+        if(product){
+            product.quantity = newQuantity
+            localStorage.setItem('cart',JSON.stringify(cartItems))
+        }
+    }
+    function removeProductFromLocalStorage(cod){
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || []
+        cartItems = cartItems.filter(item => item.cod !== cod)
+        localStorage.setItem('cart',JSON.stringify(cartItems))
+    }
+    function removeProduct(event, cod){
         event.stopPropagation()
-        event.currentTarget.parentElement.parentElement.remove()
+        event.currentTarget.parentElement.parentElement.remove()  
+        removeProductFromLocalStorage(cod);
         updateTotal()
     }
     function updateTotal(){
